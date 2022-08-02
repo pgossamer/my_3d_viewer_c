@@ -41,11 +41,7 @@ tests:
 	./tests
 
 check: tests
-	@cp -f ../materials/CPPLINT.cfg project/CPPLINT.cfg	
-	@python ../materials/cpplint.py --extensions=c project/*.c
-	@python ../materials/cpplint.py --extensions=h project/*h	
 	@cppcheck --enable=all --suppress=missingIncludeSystem project/parser.c project/affine_transformations.c viever_test.c
-	@rm -rf project/CPPLINT.cfg
 	@CK_FORK=no leaks --atExit -- ./tests
 
 gcov_report: clean lcov tests 
